@@ -30,9 +30,9 @@ export default function SigninPage(){
         <div className="bg-white h-auto w-64 rounded-md p-4 ">
             <div className="text-center font-bold text-2xl w-full ">Sign In</div>
             <div className="text-sm text-slate-500 text-center">Enter your credential to access your account</div>
-            <Input  reference={userNameRef} placeholder="username" label="john123"></Input>
-            <Input reference={passwordRef} placeholder="password" label="password"></Input>
-            <Button onClick={signin} label="Sign In"></Button>
+            <Input  type="text" reference={userNameRef} placeholder="john123" label="username"></Input>
+            <Input type="password" reference={passwordRef} placeholder="password" label="password"></Input>
+            <Button w="full" onClick={signin} label="Sign In"></Button>
             <div className="text-sm  text-center">Don't have an account? <Link className="underline" to={"/signup"}> Sign Up</Link></div>
             
         </div>

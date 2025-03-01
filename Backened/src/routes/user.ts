@@ -181,7 +181,7 @@ catch(e){
 
 })
 
-UserRouter.get("/bulk",async function(req,res){
+UserRouter.get("/bulk",authMiddleware,async function(req,res){
     const filter=req.query.filter||"";
     try{
     const users= await User.find({

@@ -7,9 +7,10 @@ export const AccountRouter= Router();
 
 AccountRouter.get("/balance",authMiddleware,async function(req,res){
     
-    const accounts= await Account.findOne({userId:req.userId});
+    const accounts= await Account.findOne({userId:req.userId}).populate("userId","firstName");
     res.json({
-       balance:accounts?.balance
+       balance:accounts?.balance,
+       user:accounts?.userId
     })
 })
 
@@ -17,8 +18,8 @@ AccountRouter.post("/transfer",authMiddleware,async function(req,res){
    
     const{to,amount}=req.body;
     const session= await mongoose.startSession();
+    try{
     session.startTransaction();
-    
     const account= await Account.findOne({userId:req.userId}).session(session);
     if(!account||account.balance<amount){
         await session.abortTransaction();
@@ -42,6 +43,11 @@ AccountRouter.post("/transfer",authMiddleware,async function(req,res){
     res.status(200).json({
        msg:"transaction successful"
     });
+}
+catch(e:any){
+    await session.abortTransaction();
+        res.status(500).json({ msg: "Something went wrong", error: e.message });
+}
     
    
 

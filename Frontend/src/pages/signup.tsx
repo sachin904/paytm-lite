@@ -35,11 +35,11 @@ export default function SignupPage(){
        <div className="h-auto w-64 bg-white rounded-md p-4  ">
         <div className="font-bold text-2xl text-center w-full m-2 ">Sign Up </div>
         <div className="text-sm text-center text-slate-500">Enter your information to create an account</div>
-        <Input reference={firstNameRef} placeholder={"john"} label={"First Name"}></Input>
-        <Input  reference={lastNameRef}  placeholder={"john"} label={"Last Name"}></Input>
-        <Input reference={userNameRef} placeholder={"john123"} label={"UserName"}></Input>
-        <Input reference={passwordRef} placeholder={""} label={"password"}></Input>
-        <Button onClick={signup} label="Sign Up"></Button>
+        <Input type="text" reference={firstNameRef} placeholder={"john"} label={"First Name"}></Input>
+        <Input type="text" reference={lastNameRef}  placeholder={"john"} label={"Last Name"}></Input>
+        <Input type="text" reference={userNameRef} placeholder={"john123"} label={"UserName"}></Input>
+        <Input type="password" reference={passwordRef} placeholder={""} label={"password"}></Input>
+        <Button w="full" onClick={signup} label="Sign Up"></Button>
         <div className="text-sm text-center my-2">Already have an account?<Link className="underline" to={"/signin"}> Login</Link></div>
        </div>
     </div>
